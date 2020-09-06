@@ -105,6 +105,7 @@ Page({
   },
   onSubmit:function(event){
     console.log(event)
+
     todos.add({
       data:{
         title:event.detail.value.title,
@@ -113,6 +114,14 @@ Page({
       }
     }).then(res=>{
       console.log(res._id)
+      wx.cloud.callFunction({
+        name:'msgMe',
+        data:{
+          formId:event.detail.formId,
+          taskId:res._id //add 插入数据后返回的索引
+        }
+      }).then(console.log)
+
       wx.showToast({
         title: '已提交',
         icon:'success',
@@ -123,5 +132,6 @@ Page({
         }
       })
     })
+
   }
 })
