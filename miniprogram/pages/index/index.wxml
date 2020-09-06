@@ -1,3 +1,13 @@
 <!--index.wxml-->
-<text>asdasdasdqasda</text>
-<van-button type="primary">按钮</van-button>
+<view class="plusBtn">
+	<navigator url="../addTodo/addTodo">
+		<van-icon class="plusIcon" name="plus" />
+	</navigator>
+</view>
+<van-cell-group>
+	<block wx:for="{{tasks}}" wx:key="id">
+		<navigator url="../todoInfo/todoInfo?id={{item._id}}">
+			<van-cell title='{{item.title}}' />
+		</navigator>
+	</block>
+</van-cell-group>

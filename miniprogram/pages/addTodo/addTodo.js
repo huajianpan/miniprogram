@@ -7,7 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    task:null,
+    image:null
+  },
+  pageData:{
+    locationObj:{}
   },
 
   /**
@@ -65,17 +69,58 @@ Page({
   onShareAppMessage: function () {
 
   },
+  selectImg(){
+    wx.chooseImage({
+      count: 0,
+      success:res=>{
+        console.log(res)
+        wx.cloud.uploadFile({
+          cloudPath:Math.floor(Math.random()*1000000)+'.png',
+          filePath:res.tempFilePaths[0]
+        }).then(res=>{
+          console.log(res.fileID)
+          this.setData({
+            image:res.fileID
+          })
+        }).catch(err=>{
+          console.error(err)
+        })
+      }
+    })
+  },
+  chooseLocation(){
+    wx.chooseLocation({
+      latitude: 0,
+      success:res=>{
+        console.log(res)
+        let locationObj={
+          latitude:res.latitude,
+          longitude:res.longitude,
+          name:res.name,
+          address:res.address
+        }
+        this.pageData.locationObj=locationObj
+      }
+    })
+  },
   onSubmit:function(event){
     console.log(event)
     todos.add({
       data:{
-        title:event.detail.value.title
+        title:event.detail.value.title,
+        image:this.data.image,
+        location:this.pageData.locationObj
       }
     }).then(res=>{
-      console.log(res)
+      console.log(res._id)
       wx.showToast({
         title: '已提交',
-        icon:'success'
+        icon:'success',
+        success:res2=>{
+          wx.redirectTo({
+            url: '../todoInfo/todoInfo?id='+res._id,
+          })
+        }
       })
     })
   }

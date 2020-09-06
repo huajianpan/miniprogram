@@ -6,3 +6,19 @@ page {
   flex-direction: column;
   justify-content: flex-start;
 }
+
+.plusBtn{
+  position: fixed;
+  z-index: 100;
+  bottom: 100rpx;
+  right: 342rpx;
+  width: 66rpx;
+  background-color: rgba(255, 123, 0, 0.171);
+  text-align: center;
+  height:66rpx;
+  line-height: 66rpx;
+  border-radius: 33rpx;
+}
+.plusIcon{
+  font-size: 66rpx;
+}
