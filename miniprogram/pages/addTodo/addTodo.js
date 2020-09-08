@@ -8,7 +8,8 @@ Page({
    */
   data: {
     task:null,
-    image:null
+    image:null,
+    time:''
   },
   pageData:{
     locationObj:{}
@@ -103,24 +104,38 @@ Page({
       }
     })
   },
+  bindTimeChange:function (event) {
+    console.log(event)
+    this.setData({
+      time:event.detail.value
+    })
+  },
   onSubmit:function(event){
     console.log(event)
+    let date=new Date()
+    let month=date.getMonth()+1
+    let day=date.getDay()
+    let year =date.getFullYear()
+    let time=`${year}-${month}-${day} ${this.data.time}`
 
     todos.add({
       data:{
         title:event.detail.value.title,
         image:this.data.image,
-        location:this.pageData.locationObj
+        location:this.pageData.locationObj,
+        status:'in-progress',
+        time:time,
+        formId:event.detail.formId
       }
     }).then(res=>{
-      console.log(res._id)
-      wx.cloud.callFunction({
-        name:'msgMe',
-        data:{
-          formId:event.detail.formId,
-          taskId:res._id //add 插入数据后返回的索引
-        }
-      }).then(console.log)
+      // console.log(res._id)
+      // wx.cloud.callFunction({
+      //   name:'msgMe',
+      //   data:{
+      //     formId:event.detail.formId,
+      //     taskId:res._id //add 插入数据后返回的索引
+      //   }
+      // }).then(console.log)
 
       wx.showToast({
         title: '已提交',
