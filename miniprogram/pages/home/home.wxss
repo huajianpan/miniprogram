@@ -1,0 +1,50 @@
+page {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+page .top {
+  flex: 0 0 200rpx;
+  background-color: red;
+}
+
+page .tab {
+  flex: 0 0 100rpx;
+  background-color: blue;
+  position: sticky;
+  top: 0;
+}
+
+page .tab .van-search {
+  height: 80rpx;
+}
+
+page .container {
+  flex: 1;
+  background-color: blueviolet;
+  min-height: 100vh;
+}
+
+.content {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.content-2 {
+  padding: 20px;
+}
+
+.right-nav {
+  padding: 0 10px;
+  line-height: 44px !important;
+  background-color: #fff;
+}
+
+.special-tab {
+  transition: all 0.25s ease-in-out;
+}
+
+.special-tab-active {
+  font-size: 1.05em !important;
+}

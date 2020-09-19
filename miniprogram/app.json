@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/addTodo/addTodo",
-    "pages/todoInfo/todoInfo"
+    "pages/todoInfo/todoInfo",
+    "pages/home/home"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -15,7 +16,11 @@
     "van-button": "vant-weapp/button",
     "van-cell-group": "vant-weapp/cell-group",
     "van-cell": "vant-weapp/cell",
-    "van-icon": "vant-weapp/icon"
+    "van-icon": "vant-weapp/icon",
+    "van-toast": "vant-weapp/toast",
+    "van-search": "vant-weapp/search",
+    "van-tab": "vant-weapp/tab",
+    "van-tabs": "vant-weapp/tabs"
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",

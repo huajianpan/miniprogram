@@ -1,4 +1,5 @@
 //app.js
+import {UIHome} from './data/UIHome'
 App({
   onLaunch: function () {
     
@@ -15,6 +16,8 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {
+      UIHomeList:UIHome
+    }
   }
 })
