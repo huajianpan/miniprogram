@@ -1,5 +1,27 @@
 //app.js
 import {UIHome} from './data/UIHome'
+const sortObj={},sortArr=[]
+UIHome.map((v,i)=>{
+  sortObj[v.sort1]||(sortObj[v.sort1]=[])
+  new Set(sortObj[v.sort1]).has(v.sort2)||(sortObj[v.sort1].push(v.sort2))
+})
+Object.keys(sortObj).forEach((v,index) => {
+  // let arr=[]
+  let obj={sort1:v,sort2:{}}
+  for(let i in sortObj[v]){
+    obj.sort2[sortObj[v][i]]=[]
+    UIHome.forEach((val,key)=>{
+      // console.log(val.sort2) 
+      if(val.sort1==v&&val.sort2==sortObj[v][i])
+      {
+        val.cloudurl='cloud://js-o48yk.6a73-js-o48yk-1300096664/img/'+val.img.split('/').pop()
+        obj.sort2[sortObj[v][i]].push(val)
+      }
+    })
+  }
+  sortArr.push(obj)
+});
+console.log(sortArr)
 App({
   onLaunch: function () {
     
@@ -17,7 +39,8 @@ App({
     }
 
     this.globalData = {
-      UIHomeList:UIHome
+      uiHomeList:UIHome,
+      sortArr:sortArr
     }
   }
 })

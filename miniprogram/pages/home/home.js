@@ -1,8 +1,8 @@
 // pages/home/home.js
 // import Page from '../../common/page';
 import Toast from '../../miniprogram_npm/vant-weapp/toast/toast';
-const db=wx.cloud.database()
-const UIHome=db.collection('UIHome')
+// const db=wx.cloud.database()
+// const UIHome=db.collection('UIHome')
 
 Page({
 
@@ -11,17 +11,10 @@ Page({
    */
   data: {
     isSearch:false,
-    tabs2: [1, 2],
-    tabs3: [1, 2, 3],
-    tabs4: [1, 2, 3, 4],
     tabs6: [1, 2, 3, 4, 5, 6],
-    tabsWithName: [
-      { name: 'a', index: 1 },
-      { name: 'b', index: 2 },
-      { name: 'c', index: 3 }
-    ]
+    sortArr:getApp().globalData.sortArr,
+    uiList:getApp().globalData.uiHomeList,
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -36,7 +29,6 @@ Page({
     //    }
     //   }
     // })
-    console.log(1)  
 
   },
 
@@ -44,7 +36,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    Toast('取消');
+    // Toast('取消');
   },
 
   /**
@@ -88,34 +80,41 @@ Page({
   onShareAppMessage: function () {
 
   },
-  onClickDisabled(event) {
-    wx.showToast({
-      title: `标签 ${event.detail.index + 1} 已被禁用`,
-      icon: 'none'
-    });
-  },
 
   onChange(event) {
-    wx.showToast({
-      title: `切换到标签 ${event.detail.index + 1}`,
-      icon: 'none'
-    });
+    // wx.showToast({
+    //   title: `切换到标签 ${event.detail.index + 1}`,
+    //   icon: 'none'
+    // });
   },
 
   onClickNavRight() {
     this.setData({
-      isSearch:true
+      isSearch:!this.data.isSearch
     })
-    wx.showToast({
-      title: '点击 right nav',
-      icon: 'none'
-    });
+    // wx.showToast({
+    //   title: '点击 right nav',
+    //   icon: 'none'
+    // });
   },
 
   onClick(event) {
-    wx.showToast({
-      title: `点击标签 ${event.detail.index + 1}`,
-      icon: 'none'
-    });
+    // wx.showToast({
+    //   title: `点击标签 ${event.detail.index + 1}`,
+    //   icon: 'none'
+    // });
+  },
+  copyUrl(e){
+    console.log( e.currentTarget.dataset)
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.item.link,
+      success (res) {
+        wx.showToast({
+          title: '链接复制成功',
+          icon: 'success',
+          duration: 1000
+        })
+      }
+    })
   }
 })

@@ -1,36 +1,50 @@
 <!--pages/home/home.wxml-->
-<view class="top">1</view>
+<!-- <view class="top">1</view> -->
 <view class="tab">
-  <van-search v-model="value" shape="round" background="#4fc08d" placeholder="请输入搜索关键词" wx:if="{{isSearch}}" />
+<van-search v-model="value" shape="round" background="#4fc08d" placeholder="请输入搜索关键词" wx:if="{{isSearch}}" />
   <van-tabs active="{{ 1 }}" sticky bind:change="onChange" tab-class="special-tab" tab-active-class="special-tab-active">
     <van-icon
       slot="nav-right"
-      name="search"
+      name="{{isSearch?'cross':'search'}}"
       custom-class="right-nav"
       bind:click="onClickNavRight"
     />
     <van-tab
-      wx:for="{{ tabs6 }}"
+      wx:for="{{ sortArr }}"
       wx:key="index"
-      title="{{ '标签 ' + item }}"
+      title="{{ item.sort1 }}"
       info="{{ null }}"
     >
       <view class="content">
-        {{ '内容' + item }}
-      </view>
+        <!-- <view class="sort1" wx:for="{{ sortArr }}" wx:key="index"> -->
+          <view class="sort2" wx:for="{{ item.sort2 }}" wx:key="*this" wx:for-item="item2">
+
+            <view class="sort2-title">
+
+              <view>
+                <van-icon
+                name="bars"
+              />
+                {{index}}
+              </view>
+            </view>
+            <view class="sort2-content">  
+              <view class="sort2-content-item"  wx:for="{{item2}}" wx:key="{{index2}}" wx:for-key="index2" wx:for-item="item3" bindtap="copyUrl" data-item="{{item3}}" >
+                <view>
+                  <view class="sort2-content-item-top"> 
+                    <image style="background-color: #eeeeee;" mode="{{item.mode}}" src="{{item3.img}}"></image>
+                    <text> {{item3.title}}</text>
+                  </view>
+                  <view class="sort2-content-item-bottom">
+                    {{item3.desc}}
+                  </view>
+                </view>
+              </view>
+            </view> 
+          </view>
+        </view>    
+      <!-- </view> -->
     </van-tab>
   </van-tabs>
-</view>
-<view class="container">
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio magnam illo neque obcaecati! Ipsa doloremque maiores, at
-  adipisci ad suscipit iure consectetur cum. Unde recusandae omnis eligendi praesentium commodi sint?
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio magnam illo neque obcaecati! Ipsa doloremque maiores, at
-  adipisci ad suscipit iure consectetur cum. Unde recusandae omnis eligendi praesentium commodi sint?
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio magnam illo neque obcaecati! Ipsa doloremque maiores, at
-  adipisci ad suscipit iure consectetur cum. Unde recusandae omnis eligendi praesentium commodi sint?
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio magnam illo neque obcaecati! Ipsa doloremque maiores, at
-  adipisci ad suscipit iure consectetur cum. Unde recusandae omnis eligendi praesentium commodi sint?
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio magnam illo neque obcaecati! Ipsa doloremque maiores, at
-  adipisci ad suscipit iure consectetur cum. Unde recusandae omnis eligendi praesentium commodi sint?
 </view>
 <van-toast id="van-toast" />
