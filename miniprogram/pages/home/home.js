@@ -37,6 +37,8 @@ Page({
    */
   onReady: function () {
     // Toast('取消');
+    
+    
   },
 
   /**
@@ -105,7 +107,7 @@ Page({
     // });
   },
   copyUrl(e){
-    console.log( e.currentTarget.dataset)
+    // console.log( e.currentTarget.dataset)
     wx.setClipboardData({
       data: e.currentTarget.dataset.item.link,
       success (res) {
@@ -115,6 +117,20 @@ Page({
           duration: 1000
         })
       }
+    })
+  },
+  /**
+   * @description 展开折叠内容
+   */
+  shiftFold(e){
+    e.currentTarget.dataset.item.isShowList=false
+    let index1=e.currentTarget.dataset.index1
+    let index2=e.currentTarget.dataset.i2
+
+    this.data.sortArr[index1].sort2[index2][0].isShowList=this.data.sortArr[index1].sort2[index2][0].isShowList?false:true
+    this.setData({
+      sortArr:this.data.sortArr
+      // sortArr:Object.assign({},this.data.sortArr)
     })
   }
 })

@@ -1,8 +1,10 @@
 <!--pages/home/home.wxml-->
 <!-- <view class="top">1</view> -->
 <view class="tab">
-<van-search v-model="value" shape="round" background="#4fc08d" placeholder="请输入搜索关键词" wx:if="{{isSearch}}" />
-  <van-tabs active="{{ 1 }}" sticky bind:change="onChange" tab-class="special-tab" tab-active-class="special-tab-active">
+  <view class="search {{!isSearch?'hide':''}}">
+    <van-search v-model="value" shape="round" background="#4fc08d" placeholder="请输入搜索关键词"   />
+  </view>
+  <van-tabs active="{{ 0 }}" sticky bind:change="onChange" tab-class="special-tab" tab-active-class="special-tab-active">
     <van-icon
       slot="nav-right"
       name="{{isSearch?'cross':'search'}}"
@@ -17,19 +19,19 @@
     >
       <view class="content">
         <!-- <view class="sort1" wx:for="{{ sortArr }}" wx:key="index"> -->
-          <view class="sort2" wx:for="{{ item.sort2 }}" wx:key="*this" wx:for-item="item2">
+          <view class="sort2" wx:for="{{ item.sort2 }}" wx:key="index2" wx:for-item="item2" wx:for-index="index2">
 
-            <view class="sort2-title">
+            <view class="sort2-title"  bindtap="shiftFold" data-item="{{item2}}" data-i2="{{index2}}" data-index1="{{index}}">
 
               <view>
                 <van-icon
                 name="bars"
               />
-                {{index}}
+                {{index2}}
               </view>
             </view>
-            <view class="sort2-content">  
-              <view class="sort2-content-item"  wx:for="{{item2}}" wx:key="{{index2}}" wx:for-key="index2" wx:for-item="item3" bindtap="copyUrl" data-item="{{item3}}" >
+          <view class="sort2-content {{!item2[0].isShowList?'hide':''}}">
+              <view class="sort2-content-item"  wx:for="{{item2}}" wx:key="key3" wx:for-index="key3" wx:for-item="item3" bindtap="copyUrl" data-item="{{item3}}" >
                 <view>
                   <view class="sort2-content-item-top"> 
                     <image style="background-color: #eeeeee;" mode="{{item.mode}}" src="{{item3.img}}"></image>

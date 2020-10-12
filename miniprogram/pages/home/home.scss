@@ -1,0 +1,135 @@
+page{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  .top{
+    flex: 0 0 200rpx;
+  }
+  .tab{
+    flex: 1;
+    .search{
+      transition:  0.2s ease;
+      overflow: hidden; 
+    }
+  }
+  .container{
+    flex: 1;
+    background-color: blueviolet;
+    min-height: 80vh;
+  }
+}
+.content {
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .sort2{
+    width:100%;
+    background-color: #F1F2F9;
+    box-sizing: border-box;
+    padding: 6px;
+    margin-bottom: 20rpx;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10rpx;
+
+    &-title{
+      height: 25px;
+      line-height:100%;
+      text-align: left;
+      font-family: "微软雅黑";
+      width: auto;
+      margin-bottom: 20rpx;
+      &>view{
+        padding: 3px;
+          van-icon{
+            display: inline-block;
+            height: 25px !important;
+            line-height: 25px;
+            margin-right: 0rpx;
+            background-color: white;
+          }
+          
+          background-color: #fff;
+          box-sizing: border-box;
+          display: inline-block;
+          font-weight: 600;
+          font-size: 13px;
+          border-radius: 2px;
+        }
+    }
+    &-content{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      overflow: hidden;
+      
+      max-height:10000vh;
+      transition: ease-in-out 0.3s;
+
+      &-item{
+        width: 100%;
+        margin: 10rpx;
+        font-size: 1em;
+        padding: 10rpx;
+        background-color: white;
+        border-radius: 3px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        
+        &-top{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start;
+          text{
+            word-wrap:break-word;
+            width: fit-content;
+            color: #515151;
+            font-weight: 600;
+            font-size: 12px;
+          }
+          image{
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            margin-right: 10rpx;
+            border-radius: 50%;
+          }
+
+        }
+        &-bottom{
+          font-size: 12px;
+          color: #5E758B;
+          display: block;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          margin-top: 2px;
+          font-weight: 400;
+        }
+
+      }
+    }
+  }
+}
+.right-nav {
+  padding: 0 10px;
+  line-height: 44px !important;
+  background-color: #fff;
+}
+
+.special-tab {
+  transition: all 0.25s ease-in-out;
+}
+
+.special-tab-active {
+  font-size: 1.05em !important;
+}
+.hide{
+  max-height:0 !important;
+}
